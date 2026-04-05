@@ -21,7 +21,6 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    flex-wrap: wrap; /* Allows menu to drop down on mobile */
 }
 
 .brand {
@@ -35,7 +34,7 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
-    gap: 4px;
+    gap: 5px;
 }
 
 .menu-toggle .bar {
@@ -193,65 +192,112 @@ pre {
 }
 
 /* Contact */
-.contact-box p {
-    margin-bottom: 10px;
-    font-size: 1.05rem;
-    word-break: break-word;
+/* Contact (Modern Grid Layout) */
+.contact-subtitle {
+    margin-bottom: 20px;
+    color: #444;
 }
 
-.contact-box a {
-    color: #3B5998;
+/* .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+} */
+
+.contact-grid {
+    display: flex;
+    flex-direction: column; /* This forces them to stack vertically */
+    gap: 15px;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
     text-decoration: none;
+    color: #333;
+    transition: all 0.2s ease;
 }
 
-.contact-box a:hover {
-    text-decoration: underline;
+.contact-card:hover {
+    border-color: #3B5998;
+    background-color: #f0f4f8;
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.contact-label {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.contact-value {
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: #3B5998;
+    word-break: break-all; /* Keeps long emails from breaking the box */
 }
 
 /* =========================================
-   Mobile Responsiveness
+   Mobile Responsiveness (Right-Slide Menu)
    ========================================= */
 @media (max-width: 600px) {
     .navbar {
         padding: 15px 20px;
     }
     
-    /* Show the hamburger menu */
+    /* Show the hamburger menu and keep it above the sliding drawer */
     .menu-toggle {
         display: flex;
+        z-index: 100;
+        position: relative;
     }
 
-    /* Hide links by default, style them as a vertical dropdown */
+    /* Style the nav links as a fixed right-side drawer */
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -250px; /* Hide off-screen by default */
+        width: 250px;
+        height: 100vh;
+        background-color: #ffffff;
         flex-direction: column;
-        width: 100%;
-        text-align: center;
-        gap: 0;
-        margin-top: 10px;
-        padding-top: 10px;
-        border-top: 1px solid #e0e0e0;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 80px; /* Push links down below the header */
+        box-shadow: -4px 0 10px rgba(0,0,0,0.1);
+        transition: right 0.3s ease-in-out;
+        z-index: 99;
     }
 
-    /* Class added by JS to reveal the menu */
+    /* Class added by JS to slide the menu in */
     .nav-links.active-menu {
-        display: flex;
+        right: 0;
     }
 
     .nav-links li {
         width: 100%;
+        text-align: center;
     }
 
     .nav-links li a {
         display: block;
-        padding: 12px;
+        padding: 15px;
+        font-size: 1.1rem;
         border-radius: 0;
-        border-bottom: none !important; /* Overrides desktop active border */
+        border-bottom: none !important;
+        border-top: 1px solid #f0f0f0;
     }
 
-    /* Change background color instead of border for active mobile tab */
     .nav-links li a.active {
         background-color: #f0f4f8;
+        border-left: 4px solid #3B5998;
     }
 
     /* General Spacing */
