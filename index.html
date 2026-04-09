@@ -24,6 +24,7 @@
                 <li><a href="practice" class="nav-btn" data-target="practice">Practice</a></li>
                 <li><a href="#profiles" class="nav-btn" data-target="profiles">Profiles</a></li>
                 <li><a href="#notes" class="nav-btn" data-target="notes">Take Notes</a></li>
+                <li><a href="#upload_files" class="nav-btn" data-target="upload_files">Upload Files</a></li>
                 <li><a href="#contact" class="nav-btn" data-target="contact">Let's Talk</a></li>
             </ul>
         </nav>
@@ -211,6 +212,19 @@ int main() {
                     <span class="contact-label">WhatsApp</span>
                     <span class="contact-value">+8801575827865</span>
                 </a>
+            </div>
+        </section>
+
+        <section id="upload_files" class="content-section">
+            <h2>Upload files.</h2>
+            <div>
+                <form id="file-upload-form" method="post">
+                    <label for="myFile">Choose a file (Image or PDF):</label>
+                    <input type="file" id="myFile" name="upload" accept=".pdf, image/*" required> <br>
+                    
+                    <button type="submit" id="upload-btn">Upload File</button>
+                    <p id="upload-status" style="margin-top: 10px; font-weight: bold;"></p>
+                </form>
             </div>
         </section>
 
